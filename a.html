@@ -1,0 +1,28 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>跳转到微信和QQ示例</title>
+<script>
+function openApp(appScheme) {
+    // 检测是否为安卓设备
+    var isAndroid = /android/i.test(navigator.userAgent);
+    if(isAndroid) {
+        // 通过设置window.location来尝试触发深链接
+        window.location.href = appScheme;
+    } else {
+        // 非安卓设备的处理逻辑，例如显示错误消息
+        alert('请在安卓设备上打开此链接');
+    }
+}
+</script>
+</head>
+<body>
+
+<!-- 创建一个按钮用于打开微信 -->
+<button onclick="openApp('weixin://')">打开微信</button>
+
+<!-- 创建一个按钮用于打开QQ -->
+<button onclick="openApp('mqq://')">打开QQ</button>
+
+</body>
+</html>
