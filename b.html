@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动态创建打开应用的按钮</title>
+</head>
+<body>
+
+<h2>输入应用包名：</h2>
+<input id="appPackageInput" type="text" placeholder="输入包名，例如: com.tencent.mm"/>
+<button id="generateButton">创建打开应用按钮</button>
+
+<script>
+document.getElementById('generateButton').addEventListener('click', function(){
+    var appPackageName = document.getElementById('appPackageInput').value.trim();
+
+    if(appPackageName){
+        // 按钮文本
+        var buttonText = '打开 ' + appPackageName + ' 应用';
+
+        // 创建按钮
+        var newButton = document.createElement('button');
+        newButton.textContent = buttonText;
+
+        // 设置点击事件
+        newButton.addEventListener('click', function(){
+            // 安卓 Intent URL Scheme 格式
+            var intentURL = 'intent:' + '#Intent;' + 'package=' + appPackageName + ';end';
+            window.location.href = intentURL;
+        });
+
+        // 将新按钮添加到 body 元素
+        document.body.appendChild(newButton);
+    } else {
+        alert('请输入一个有效的应用包名。');
+    }
+});
+</script>
+
+</body>
+</html>
